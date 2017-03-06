@@ -464,15 +464,15 @@ bool MDMParser::init(const char* simpin, DevStatus* status, PinName pn)
     INFO("Modem::init\r\n");
     sendFormated("AT\r\n");
     waitFinalResp();
-    wait_ms(1000);
+    wait_ms(500);
 
     sendFormated("AT\r\n");
     waitFinalResp();
-    wait_ms(1000);
+    wait_ms(500);
 
     sendFormated("AT+NBAND?\r\n");
     waitFinalResp();
-    wait_ms(2000);
+    wait_ms(1000);
 
     sendFormated("AT+CMEE=1\r\n");
     waitFinalResp();
@@ -488,10 +488,10 @@ bool MDMParser::init(const char* simpin, DevStatus* status, PinName pn)
     wait_ms(10000);
 
     INFO("Modem::RegisterF \r\n");
-    sendFormated("AT+COPS=1,2,\"23591\"\r\n");     // NEWBURY
-    //sendFormated("AT+COPS=1,2,\"46001\"\r\n");   // NEUL
+    //sendFormated("AT+COPS=1,2,\"23591\"\r\n");     // NEWBURY
+    sendFormated("AT+COPS=1,2,\"46001\"\r\n");   // NEUL
     waitFinalResp();
-    wait_ms(42000);
+    wait_ms(40000);
 
     INFO("Modem::Register status \r\n");
     sendFormated("AT+CEREG?\r\n");
@@ -1250,8 +1250,8 @@ int MDMParser::socketSendTo(int socket, IP ip, int port, const char * buf, int l
         char *str = (char*)malloc(3*len);
         tohex( (unsigned char *)buf, (size_t)len,  (char *)str,  3*len);
 
-        sendFormated("AT+NSOST=0,195.46.10.19,%d,%d,%s\r\n", port,blk,str);      // Newbury OpenLAB
-        //sendFormated("AT+NSOST=0,120.16.45.6,%d,%d,%s\r\n", port,blk,str);       // Neul ecco server
+        //sendFormated("AT+NSOST=0,195.46.10.19,%d,%d,%s\r\n", port,blk,str);      // Newbury OpenLAB
+        sendFormated("AT+NSOST=0,120.16.45.6,%d,%d,%s\r\n", port,blk,str);       // Neul ecco server
 
         wait_ms(50);
         waitFinalResp();

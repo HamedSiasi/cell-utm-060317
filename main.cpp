@@ -24,9 +24,9 @@
 //#define MBED_SERVER_ADDRESS  "coap://169.45.82.18:5684"            // ARM LwM2M server
 //#define MBED_SERVER_ADDRESS  "coap://151.9.34.90:5683"             // Sgonico CoAP echo server
 //#define MBED_SERVER_ADDRESS  "coap://151.9.34.99:8080"             // Junaid Ashraf
-#define MBED_SERVER_ADDRESS    "coap://195.46.10.19:9005"            // ZELITRON LwM2M server  Newbury OpenLAB
+//#define MBED_SERVER_ADDRESS    "coap://195.46.10.19:9005"            // ZELITRON LwM2M server  Newbury OpenLAB
 //#define MBED_SERVER_ADDRESS  "coap://192.168.5.80:9005"            // ZELITRON Server VIP (Load balancer )
-//#define MBED_SERVER_ADDRESS    "coap://120.16.45.6:41000"            // Neul ecco server
+#define MBED_SERVER_ADDRESS    "coap://120.16.45.6:41000"            // Neul ecco server
 
 
 

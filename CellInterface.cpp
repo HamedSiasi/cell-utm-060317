@@ -28,8 +28,8 @@ __attribute__((section("AHBSRAM0"))) static MDMSerial *pMdm = NULL;
 //#define PORT 9005
 
 //ZELITRON
-#define HOST "195.46.10.19"
-#define PORT 9005
+//#define HOST "195.46.10.19"
+//#define PORT 9005
 
 //#define HOST "ciot.it-sgn.u-blox.com"
 //#define PORT 5683
@@ -44,8 +44,8 @@ __attribute__((section("AHBSRAM0"))) static MDMSerial *pMdm = NULL;
 //#define PORT 5683
 
 //Neul ecco server
-//#define HOST "120.16.45.6"
-//#define PORT 41000
+#define HOST "120.16.45.6"
+#define PORT 41000
 
 
 
@@ -154,19 +154,20 @@ class CellNet : public NetworkStack{
 
 	    virtual int socket_open(nsapi_socket_t *handle, nsapi_protocol_t proto)
 	    {
+	    	printf("---> socket_open ---------\r\n");
 	    	return (int)0;
 	    }
 
 	    virtual int socket_close(nsapi_socket_t handle)
 	    {
-	    	//printf("---> socket_close handle:(%d)\r\n", (int)handle);
-	    	//pMdm->socketClose( (int)mysocket );
+	    	printf("---> socket_close handle:(%d) ---------\r\n", (int)handle);
+	    	pMdm->socketClose( (int)mysocket );
 	    	return (int)0;
 	    }
 
 	    virtual int socket_bind(nsapi_socket_t handle, const SocketAddress &address)
 	    {
-	    	//printf("---> socket_bind handle:(%d)\r\n");
+	    	printf("---> socket_bind handle:(%d) ---------\r\n");
 	        if (mysocket < 0) {
 	            mysocket = pMdm->socketSocket(MDMParser::IPPROTO_UDP, PORT);
 	            if (mysocket < 0) {
@@ -179,27 +180,28 @@ class CellNet : public NetworkStack{
 
 	    virtual int socket_listen(nsapi_socket_t handle, int backlog)
 	    {
-	    	//printf("---> socket_listen \r\n");
+	    	printf("---> socket_listen ---------\r\n");
 	    	return (int)true;
 	    }
 	    virtual int socket_connect(nsapi_socket_t handle, const SocketAddress &address)
 	    {
-	    	//printf("---> socket_connect \r\n");
-	    	pMdm->socketConnect( (int) mysocket, (const char*) "coap://api.connector.mbed.com", 5684);
+	    	printf("---> socket_connect ---------\r\n");
+	    	//pMdm->socketConnect( (int) mysocket, (const char*) "coap://api.connector.mbed.com", 5684);
 	    	return (int)true;
 	    }
 	    virtual int socket_accept(nsapi_socket_t *handle, nsapi_socket_t server)
 	    {
+	    	printf("---> socket_accept ---------\r\n");
 	    	return (int)true;
 	    }
 	    virtual int socket_send(nsapi_socket_t handle, const void *data, unsigned size)
 	    {
-	    	//printf("---> socket_send \r\n");
+	    	printf("---> socket_send ---------\r\n");
 	    	return (int) pMdm->socketSend( (int) mysocket, (const char *) data, (int) size);
 	    }
 	    virtual int socket_recv(nsapi_socket_t handle, void *data, unsigned size)
 	    {
-	    	//printf("---> socket_recv \r\n");
+	    	printf("---> socket_recv ---------\r\n");
 	    	return (int) pMdm->socketRecv( (int) mysocket, (char*) data, (int) size);
 	    }
 	    virtual int socket_sendto(nsapi_socket_t handle, const SocketAddress &address, const void *data, unsigned size)
@@ -221,17 +223,17 @@ class CellNet : public NetworkStack{
 
 	    virtual void socket_attach(nsapi_socket_t handle, void (*callback)(void *), void *data)
 	    {
-	    	//printf("---> socket_attach handle:(%d)\r\n", (int)handle);
+	    	printf("---> socket_attach handle:(%d) ---------\r\n", (int)handle);
 	    }
 
 	    virtual int setsockopt(nsapi_socket_t handle, int level, int optname, const void *optval, unsigned optlen)
 	    {
-	    	//printf("---> setsockopt \r\n");
+	    	printf("---> setsockopt ---------\r\n");
 	    	return (int)0;
 	    }
 	    virtual int getsockopt(nsapi_socket_t handle, int level, int optname, void *optval, unsigned *optlen)
 	    {
-	    	//printf("---> getsockopt \r\n");
+	    	printf("---> getsockopt ---------\r\n");
 	    	return (int)0;
 	    }
 };

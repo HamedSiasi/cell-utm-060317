@@ -67,11 +67,11 @@ public:
         MDMParser::IP ip;
         int port;
         int ret = _mdm->socketRecvFrom(_socket, &ip, &port, buffer, length); 
-        if (ret >= 0) {
-            char str[17];
-            sprintf(str, IPSTR, IPNUM(ip));
-            remote.set_address(str, port);
-        }
+//        if (ret >= 0) {
+//            char str[17];
+//            sprintf(str, IPSTR, IPNUM(ip));
+//            remote.set_address(str, port);
+//        }
         return ret;
     }
 };
